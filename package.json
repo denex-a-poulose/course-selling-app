@@ -1,0 +1,24 @@
+{
+  "name": "course-selling-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "course",
+    "classes",
+    "programming"
+  ],
+  "dependencies": {
+    "express": "4.21.2",
+    "jsonwebtoken": "9.0.2",
+    "mongoose": "8.8.4",
+    "nodemon": "^3.1.7",
+    "validate-express-req-body": "1.5.2"
+  },
+  "author": "Denex A Poulose",
+  "license": "ISC",
+  "description": "A course selling app"
+}
