@@ -1,13 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 require("dotenv").config();
-console.log(process.env.MONGO_USER_PASSWORD);
 
 const userRouter = require("./routes/user");
 const courseRouter = require("./routes/course");
 const adminRouter = require("./routes/admin");
 
 const app = express();
+app.use(bodyParser.json()); // for parsing application/json
+
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/course", courseRouter);
