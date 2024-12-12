@@ -1,10 +1,10 @@
 const express = require("express");
 const Router = express.Router;
 require("dotenv").config();
-const { adminModel } = require("../db");
+const { adminModel, courseModel } = require("../db");
 const jwt = require("jsonwebtoken");
-const JWT_ADMIN_PASSWORD = process.env.JWT_ADMIN_PASSWORD;
-
+const { JWT_ADMIN_PASSWORD } = require("../config");
+const { adminMiddleware } = require("../middleware/admin");
 const adminRouter = Router();
 // adminRouter.use(adminMiddleware);
 
@@ -45,9 +45,20 @@ adminRouter.post("/signin", async (req, res) => {
     });
   }
 });
-adminRouter.get("/", (req, res) => {
+adminRouter.get("/course", adminMiddleware, async (req, res) => {
+  const adminId = req.userId;
+  const { title, description, imageUrl, price } = req.body;
+  const course = await courseModel.create({
+    title,
+    description,
+    imageUrl,
+    price,
+    creatorId: adminId,
+  });
+
   res.json({
-    message: "heyyy",
+    message: "Course Created",
+    courseId: course._id,
   });
 });
 adminRouter.put("/", (req, res) => {

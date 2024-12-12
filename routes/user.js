@@ -3,7 +3,7 @@ const Router = express.Router;
 const { userModel } = require("../db");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-const JWT_USER_PASSWORD = process.env.JWT_USER_PASSWORD;
+const { JWT_USER_PASSWORD } = require("../config");
 
 const userRouter = Router();
 userRouter.post("/signup", async (req, res) => {
